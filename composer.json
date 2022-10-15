@@ -1,0 +1,19 @@
+{
+    "name": "hexlet/code",
+    "description": "test",
+    "license": ["0BSD"],
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kirill Nikonenkov"
+        }
+    ],
+    "require": {},
+    "bin": [
+        "bin/brain-games"
+    ]
+}
