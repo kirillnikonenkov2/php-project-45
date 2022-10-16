@@ -13,6 +13,9 @@ brain-calc:
 brain-gcd:
 		./bin/brain-gcd
 
+brain-progression:
+		./bin/brain-progression
+
 allow-exec:
 		chmod +x bin/${file}
 

@@ -70,7 +70,11 @@ function generateCalcRoundItem(): array
 
 function findGsd(int $firstRand, int $secondRand): int
 {
-    return 1;
+    if($secondRand > 0) {
+        return findGsd($secondRand, $firstRand % $secondRand);
+    } else {
+        return abs($firstRand);
+    }
 }
 
 function generateGsdRoundItem(): array
@@ -82,6 +86,33 @@ function generateGsdRoundItem(): array
 
     $result['question'] = "{$firstRand} {$secondRand}";
     $result['answer'] = findGsd($firstRand, $secondRand);
+
+    return $result;
+}
+
+function generateProgressionRoundItem(): array
+{
+    $result = [];
+    $progressionLength = 10;
+    $question = '';
+
+    $startingNum = generateRandomNumber();
+    $progressionStep = generateRandomNumber();
+    $missingIndex = generateRandomNumber($progressionLength - 1);
+    $missingValue = 0;
+
+    for ($i = 0; $i < $progressionLength; $i++) {
+        $val = $startingNum + $i * $progressionStep;
+        if ($i === $missingIndex) {
+            $question .= ".. ";
+            $missingValue = $val;
+        } else {
+            $question .= "{$val} ";
+        }
+    }
+
+    $result['question'] = "{$question}";
+    $result['answer'] = $missingValue;
 
     return $result;
 }
@@ -99,6 +130,9 @@ function generateRoundItem(string $game): array
             break;
         case 'gcd':
             $result = generateGsdRoundItem();
+            break;
+        case 'progression':
+            $result = generateProgressionRoundItem();
             break;
     }
 
@@ -137,6 +171,14 @@ function startGcdGame()
 {
     $rules = 'Find the greatest common divisor of given numbers.';
     $roundsItems = generateGameRounds('gcd');
+
+    startGame($roundsItems, $rules);
+}
+
+function startProgressionGame()
+{
+    $rules = 'What number is missing in the progression?';
+    $roundsItems = generateGameRounds('progression');
 
     startGame($roundsItems, $rules);
 }
