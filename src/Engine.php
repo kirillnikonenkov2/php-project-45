@@ -12,7 +12,7 @@ function showRules($rules)
     line($rules);
 }
 
-function showQuestion(int $question)
+function showQuestion($question)
 {
     line("Question: {$question}");
 }
@@ -42,12 +42,7 @@ function showWinGame(string $name)
     line("Congratulations, {$name}!");
 }
 
-function generateRandomNumber(): int
-{
-    return rand(0, 100);
-}
-
-function makeRound(int $question, string $correctAnswer): bool
+function makeRound($question, string $correctAnswer): bool
 {
     showQuestion($question);
 
@@ -74,8 +69,8 @@ function startGame(array $questionsArr, string $rules)
     $numOfCorrectAnswers = 0;
     $numOfQuestions = count($questionsArr);
 
-    foreach ($questionsArr as $question => $answer) {
-        $isRoundPassed = makeRound($question, $answer);
+    foreach ($questionsArr as $questionItem) {
+        $isRoundPassed = makeRound($questionItem['question'], $questionItem['answer']);
 
         if (!$isRoundPassed) {
             break;

@@ -7,6 +7,12 @@ brain-games:
 brain-even:
 		./bin/brain-even
 
+brain-calc:
+		./bin/brain-calc
+
+allow-exec:
+		chmod +x bin/${file}
+
 validate:
 		composer validate
 
