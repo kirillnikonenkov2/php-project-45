@@ -68,6 +68,24 @@ function generateCalcRoundItem(): array
     return $result;
 }
 
+function findGsd(int $firstRand, int $secondRand): int
+{
+    return 1;
+}
+
+function generateGsdRoundItem(): array
+{
+    $result = [];
+
+    $firstRand = generateRandomNumber();
+    $secondRand = generateRandomNumber();
+
+    $result['question'] = "{$firstRand} {$secondRand}";
+    $result['answer'] = findGsd($firstRand, $secondRand);
+
+    return $result;
+}
+
 function generateRoundItem(string $game): array
 {
     $result = null;
@@ -78,6 +96,9 @@ function generateRoundItem(string $game): array
             break;
         case 'calc':
             $result = generateCalcRoundItem();
+            break;
+        case 'gcd':
+            $result = generateGsdRoundItem();
             break;
     }
 
@@ -108,6 +129,14 @@ function startCalcGame()
 {
     $rules = 'What is the result of the expression?';
     $roundsItems = generateGameRounds('calc');
+
+    startGame($roundsItems, $rules);
+}
+
+function startGcdGame()
+{
+    $rules = 'Find the greatest common divisor of given numbers.';
+    $roundsItems = generateGameRounds('gcd');
 
     startGame($roundsItems, $rules);
 }

@@ -10,6 +10,9 @@ brain-even:
 brain-calc:
 		./bin/brain-calc
 
+brain-gcd:
+		./bin/brain-gcd
+
 allow-exec:
 		chmod +x bin/${file}
 
