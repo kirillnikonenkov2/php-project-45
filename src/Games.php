@@ -70,7 +70,7 @@ function generateCalcRoundItem(): array
 
 function findGsd(int $firstRand, int $secondRand): int
 {
-    if($secondRand > 0) {
+    if ($secondRand > 0) {
         return findGsd($secondRand, $firstRand % $secondRand);
     } else {
         return abs($firstRand);
@@ -117,6 +117,30 @@ function generateProgressionRoundItem(): array
     return $result;
 }
 
+function isPrime(int $num): string
+{
+    for($x = 2; $x < $num; $x++)
+    {
+        if($num % $x === 0)
+        {
+            return 'no';
+        }
+    }
+    return 'yes';
+}
+
+function generatePrimeRoundItem(): array
+{
+    $result = [];
+
+    $randNum = generateRandomNumber();
+
+    $result['question'] = "{$randNum}";
+    $result['answer'] = isPrime($randNum);
+
+    return $result;
+}
+
 function generateRoundItem(string $game): array
 {
     $result = null;
@@ -133,6 +157,9 @@ function generateRoundItem(string $game): array
             break;
         case 'progression':
             $result = generateProgressionRoundItem();
+            break;
+        case 'prime':
+            $result = generatePrimeRoundItem();
             break;
     }
 
@@ -179,6 +206,14 @@ function startProgressionGame()
 {
     $rules = 'What number is missing in the progression?';
     $roundsItems = generateGameRounds('progression');
+
+    startGame($roundsItems, $rules);
+}
+
+function startPrimeGame()
+{
+    $rules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+    $roundsItems = generateGameRounds('prime');
 
     startGame($roundsItems, $rules);
 }
