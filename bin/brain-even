@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+
+<?php
+
+use function BrainGames\Engine\startGame;
+use function BrainGames\Engine\generateRandomNumber;
+
+$autoloadPath1 = __DIR__ . '/../../../autoload.php';
+$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
+
+if (file_exists($autoloadPath1)) {
+    require_once $autoloadPath1;
+} else {
+    require_once $autoloadPath2;
+}
+
+function checkIfEven($num): string
+{
+    if ($num % 2 === 0) {
+        return 'yes';
+    }
+
+    return 'no';
+}
+
+function generateGameRoundItems(int $numOfRounds): array
+{
+    $result = [];
+
+    for ($i = 0; $i < $numOfRounds; $i++) {
+        $num = generateRandomNumber();
+        $result[$num] = checkIfEven($num);
+    }
+
+    return $result;
+}
+
+$roundsToWin = 3;
+$rules = 'Answer "yes" if the number is even, otherwise answer "no".';
+$roundsItems = generateGameRoundItems($roundsToWin);
+
+startGame($roundsItems, $rules);
