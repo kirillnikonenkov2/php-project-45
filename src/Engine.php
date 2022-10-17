@@ -34,7 +34,7 @@ function showWinRound()
 
 function showLooseGame(string $name)
 {
-    line("Let's try again, {$name}");
+    line("Let's try again, {$name}!");
 }
 
 function showWinGame(string $name)
