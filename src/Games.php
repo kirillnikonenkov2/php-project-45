@@ -119,10 +119,8 @@ function generateProgressionRoundItem(): array
 
 function isPrime(int $num): string
 {
-    for($x = 2; $x < $num; $x++)
-    {
-        if($num % $x === 0)
-        {
+    for ($x = 2; $x < $num; $x++) {
+        if ($num % $x === 0) {
             return 'no';
         }
     }
