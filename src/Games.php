@@ -18,7 +18,7 @@ function generateRandomNumber(int $end = 100): int
     return rand(0, $end);
 }
 
-function checkIfEven($num): string
+function checkIfEven(int $num): string
 {
     return $num % 2 === 0 ? 'yes' : 'no';
 }

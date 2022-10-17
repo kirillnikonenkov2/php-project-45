@@ -7,12 +7,12 @@ use function cli\prompt;
 use function BrainGames\Cli\getUserName;
 use function BrainGames\Cli\greetUser;
 
-function showRules($rules)
+function showRules(string $rules)
 {
     line($rules);
 }
 
-function showQuestion($question)
+function showQuestion(string $question)
 {
     line("Question: {$question}");
 }
@@ -42,7 +42,7 @@ function showWinGame(string $name)
     line("Congratulations, {$name}!");
 }
 
-function makeRound($question, string $correctAnswer): bool
+function makeRound(string $question, string $correctAnswer): bool
 {
     showQuestion($question);
 
